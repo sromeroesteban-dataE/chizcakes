@@ -100,7 +100,7 @@
   /* SABORES */
   .sabores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
   .sabor-card { background: white; border-radius: 16px; overflow: hidden; border: 0.5px solid rgba(122,75,33,0.12); }
-  .sabor-photo { height: 140px; background: var(--card); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; }
+  .sabor-photo { height: 140px; width: 100%; background: var(--card); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; object-fit: cover; }
   .sabor-body { padding: 16px; }
   .sabor-name { font-weight: 600; font-size: 17px; margin-bottom: 4px; }
   .sabor-desc { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.4; }
@@ -259,13 +259,13 @@
   const WHATSAPP_NUMBER = "5491100000000"; // reemplazar por el número real
 
   const sabores = [
-    { nombre: "Frutos Rojos", desc: "Con coulis casero de frutos rojos.", sizes: { "Individual": 3800, "Mediano": 9800, "Grande": 16000 } },
+    { nombre: "Frutos Rojos", foto: "images/frutos-rojos.jpg", desc: "Con coulis casero de frutos rojos.", sizes: { "Individual": 3800, "Mediano": 9800, "Grande": 16000 } },
     { nombre: "Dulce de Leche", desc: "Con dulce de leche repostero.", sizes: { "Individual": 3800, "Mediano": 9800, "Grande": 16000 } },
-    { nombre: "Limón", desc: "Fresco y cítrico, con ralladura natural.", sizes: { "Individual": 3700, "Mediano": 9500, "Grande": 15800 } },
+    { nombre: "Limón", foto: "images/limon.jpg", desc: "Fresco y cítrico, con ralladura natural.", sizes: { "Individual": 3700, "Mediano": 9500, "Grande": 15800 } },
     { nombre: "Oreo", desc: "Con trocitos de galleta Oreo en la base y la cubierta.", sizes: { "Individual": 4000, "Mediano": 10200, "Grande": 16800 } },
     { nombre: "Café", desc: "Con un toque de espresso, ideal para los fanáticos del café.", sizes: { "Individual": 3900, "Mediano": 10000, "Grande": 16400 } },
-    { nombre: "Maracuyá", desc: "Con pulpa natural de maracuyá.", sizes: { "Individual": 3900, "Mediano": 10000, "Grande": 16200 } },
-    { nombre: "Fresa", desc: "Con salsa de fresas frescas.", sizes: { "Individual": 3800, "Mediano": 9800, "Grande": 16000 } },
+    { nombre: "Maracuyá", foto: "images/maracuya.jpg", desc: "Con pulpa natural de maracuyá.", sizes: { "Individual": 3900, "Mediano": 10000, "Grande": 16200 } },
+    { nombre: "Fresa", foto: "images/fresa.jpg", desc: "Con salsa de fresas frescas.", sizes: { "Individual": 3800, "Mediano": 9800, "Grande": 16000 } },
     { nombre: "Chocolate", desc: "Con ganache de chocolate semiamargo.", sizes: { "Individual": 4000, "Mediano": 10200, "Grande": 16500 } }
   ];
 
@@ -275,8 +275,11 @@
     let activeSize = sizeKeys[0];
     const card = document.createElement('div');
     card.className = 'sabor-card reveal';
+    const fotoHtml = sabor.foto
+      ? `<img class="sabor-photo" src="${sabor.foto}" alt="Cheesecake Chiz sabor ${sabor.nombre}">`
+      : `<div class="sabor-photo">Foto ${sabor.nombre}</div>`;
     card.innerHTML = `
-      <div class="sabor-photo">Foto ${sabor.nombre}</div>
+      ${fotoHtml}
       <div class="sabor-body">
         <div class="sabor-name">${sabor.nombre}</div>
         <div class="sabor-desc">${sabor.desc}</div>
